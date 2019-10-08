@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='oracle_mobile_app'
