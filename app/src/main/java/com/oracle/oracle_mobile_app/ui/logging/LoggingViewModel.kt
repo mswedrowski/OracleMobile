@@ -11,7 +11,9 @@ class LoggingViewModel @Inject constructor(
                                             var oracleServerApi: OracleServerApi
                                             ): BaseViewModel() {
 
-    fun signIn(user:String,password:String) {
+    fun signIn() {
+
+        /*
         disposables.add(oracleServerApi.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -19,5 +21,7 @@ class LoggingViewModel @Inject constructor(
             .subscribe(
                 {users -> Log.v("Fetched users",users.body().toString())}
             ))
+
+         */
     }
 }

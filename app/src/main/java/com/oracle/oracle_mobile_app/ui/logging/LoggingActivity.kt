@@ -1,11 +1,13 @@
 package com.oracle.oracle_mobile_app.ui.logging
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.oracle.oracle_mobile_app.R
 import androidx.lifecycle.ViewModelProviders
 import com.oracle.oracle_mobile_app.base.BaseActivity
 import com.oracle.oracle_mobile_app.databinding.ActivityLoggingBinding
+import com.oracle.oracle_mobile_app.ui.menu.MenuActivity
 
 import kotlinx.android.synthetic.main.activity_logging.*
 import javax.inject.Inject
@@ -21,6 +23,10 @@ class LoggingActivity @Inject constructor() : BaseActivity() {
         setContentView(R.layout.activity_logging)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoggingViewModel::class.java)
 
-        login_btn.setOnClickListener{ viewModel.signIn()}
+        login_btn.setOnClickListener{
+            val intent = Intent(this, MenuActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 }
