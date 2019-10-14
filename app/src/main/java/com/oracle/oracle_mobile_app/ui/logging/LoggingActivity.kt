@@ -7,7 +7,8 @@ import com.oracle.oracle_mobile_app.R
 import androidx.lifecycle.ViewModelProviders
 import com.oracle.oracle_mobile_app.base.BaseActivity
 import com.oracle.oracle_mobile_app.databinding.ActivityLoggingBinding
-import com.oracle.oracle_mobile_app.ui.menu.MenuActivity
+import com.oracle.oracle_mobile_app.ui.main.MainActivity
+
 
 import kotlinx.android.synthetic.main.activity_logging.*
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class LoggingActivity @Inject constructor() : BaseActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoggingViewModel::class.java)
 
         login_btn.setOnClickListener{
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
 
             startActivity(intent)
         }
