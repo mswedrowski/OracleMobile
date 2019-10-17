@@ -1,4 +1,4 @@
-package com.oracle.oracle_mobile_app.ui.main.dashboard
+package com.oracle.oracle_mobile_app.ui.main.predictions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.oracle.oracle_mobile_app.R
 
-class DashboardFragment : Fragment() {
+class PredictionsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var predictionsViewModel: PredictionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        predictionsViewModel =
+            ViewModelProviders.of(this).get(PredictionsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_predictions, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        predictionsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

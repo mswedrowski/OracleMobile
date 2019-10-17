@@ -4,4 +4,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="total_number_of_orders">Total number of orders</string>
+    <string name="last_purchases">Last purchases</string>
 </resources>
