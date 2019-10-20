@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.oracle.oracle_mobile_app.ui.main.history.HistoryFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.oracle.oracle_mobile_app.ui.main.dashboard.TodayFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.oracle.oracle_mobile_app.ui.main.today.TodayFragment"
+        android:label="@string/title_today"
         tools:layout="@layout/fragment_today" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.oracle.oracle_mobile_app.ui.main.predictions.PredictionsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_predictions"
         tools:layout="@layout/fragment_predictions" />
 </navigation>

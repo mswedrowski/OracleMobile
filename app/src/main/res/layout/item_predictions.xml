@@ -5,45 +5,45 @@
     <data>
         <variable
             name="viewModel"
-            type="com.oracle.oracle_mobile_app.ui.main.history.HistoryRecordViewModel" />
+            type="com.oracle.oracle_mobile_app.ui.main.predictions.PredictionsRecordViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_history_container"
+        android:id="@+id/item_predictions_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/history_item_name_tv"
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="15dp"
+            android:id="@+id/predictions_item_color_label"
             android:layout_marginStart="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:mutableText="@{viewModel.getHistoryRecordName()}"
             >
 
-        </TextView>
+        </ImageView>
 
         <TextView
-            android:id="@+id/history_date_tv"
+            android:id="@+id/predictions_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            app:layout_constraintStart_toEndOf="@+id/history_item_name_tv"
-            app:layout_constraintEnd_toStartOf="@+id/history_value_tv"
+            app:layout_constraintStart_toEndOf="@+id/predictions_item_color_label"
+            app:layout_constraintEnd_toStartOf="@+id/predictions_value_tv"
             app:layout_constraintTop_toTopOf="parent"
-            app:mutableText="@{viewModel.getHistoryRecordDate()}" />
+            app:mutableText="@{viewModel.getPredictionsRecordDate()}" />
 
         <TextView
-            android:id="@+id/history_value_tv"
+            android:id="@+id/predictions_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/history_date_tv"
+            app:layout_constraintStart_toEndOf="@+id/predictions_date_tv"
             app:layout_constraintTop_toTopOf="parent"
-            app:mutableText="@{viewModel.getHistoryRecordValue()}" />
+            app:mutableText="@{viewModel.getPredictionsRecordValue()}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

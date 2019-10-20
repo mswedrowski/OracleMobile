@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">oracle_mobile_app</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_history">History</string>
+    <string name="title_today">Today</string>
+    <string name="title_predictions">Predictions</string>
     <string name="total_number_of_orders">Total number of orders</string>
-    <string name="last_purchases">Last purchases</string>
+    <string name="most_popular_products">Top selling</string>
+    <string name="number_of_orders">Number of orders</string>
+    <string name="compared_to_yesterday">Compared to yesterday</string>
+    <string name="expected_number_of_orders">Expected number of orders</string>
+    <string name="expected_amount_of_orders">Expected amount of orders</string>
 </resources>
