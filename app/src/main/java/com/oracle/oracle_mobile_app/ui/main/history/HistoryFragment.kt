@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 
 class HistoryFragment
-: Fragment() {
+    : Fragment() {
     private lateinit var historyViewModel: HistoryViewModel
 
     private lateinit var binding: FragmentHistoryBinding
@@ -49,7 +49,7 @@ class HistoryFragment
         savedInstanceState: Bundle?
     ): View? {
 
-       historyViewModel = HistoryViewModel()
+        historyViewModel = HistoryViewModel()
 
         historyViewModel.historyOrderNumList.value?.forEach { order_amnt ->
             chart_entries.add(Entry(order_amnt.date.toFloat(),order_amnt.value))
