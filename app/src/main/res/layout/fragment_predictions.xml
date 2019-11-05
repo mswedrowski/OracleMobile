@@ -39,9 +39,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorButton"
-                        android:text="@string/expected_number_of_orders"
+                        android:text="@string/expected_amount_of_orders"
                         android:textAlignment="center"
                         android:textSize="20dp"
+                        android:padding="3dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -94,9 +95,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorButton"
-                        android:text="@string/expected_amount_of_orders"
+                        android:text="@string/orders_in_next_few_days"
                         android:textAlignment="center"
                         android:textSize="20dp"
+                        android:padding="3dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">

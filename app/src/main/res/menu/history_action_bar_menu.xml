@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/last_year"
+            android:title="Last year" />
+        <item
+            android:id="@+id/last_month"
+            android:title="Last month" />
+        <item
+            android:id="@+id/full_history"
+            android:title="Full history">
+        </item>
+    </group>
+</menu>

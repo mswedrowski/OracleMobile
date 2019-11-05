@@ -5,9 +5,9 @@
     <string name="title_today">Today</string>
     <string name="title_predictions">Predictions</string>
     <string name="total_number_of_orders">Total number of orders</string>
-    <string name="most_popular_products">Top selling</string>
+    <string name="most_popular_products">Best sellers</string>
     <string name="number_of_orders">Number of orders</string>
-    <string name="compared_to_yesterday">Compared to yesterday</string>
-    <string name="expected_number_of_orders">Expected number of orders</string>
+    <string name="compared_to_yesterday">In comparison to yesterday </string>
     <string name="expected_amount_of_orders">Expected amount of orders</string>
+    <string name="orders_in_next_few_days">Orders in next few days</string>
 </resources>

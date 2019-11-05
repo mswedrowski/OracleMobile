@@ -13,7 +13,7 @@ import com.oracle.oracle_mobile_app.ui.main.predictions.PredictionsAdapter
 import com.oracle.oracle_mobile_app.utils.extensions.getParentActivity
 
 @BindingAdapter("historyRecordList")
-fun setHistoryRecordList(recyclerView: RecyclerView, items: MutableLiveData<List<HistoryPurchase>>) {
+fun setHistoryRecordList(recyclerView: RecyclerView, items: MutableLiveData<List<AmountOfOrders>>) {
     with(recyclerView.adapter as HistoryAdapter) {
         val parentActivity: AppCompatActivity? = recyclerView.getParentActivity()
         if (parentActivity != null) {

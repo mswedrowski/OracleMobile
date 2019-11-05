@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.oracle.oracle_mobile_app.data.model.HistoryPurchase
 import com.oracle.oracle_mobile_app.R
+import com.oracle.oracle_mobile_app.data.model.AmountOfOrders
 import com.oracle.oracle_mobile_app.databinding.ItemHistoryBinding
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private lateinit var historyRecordList: List<HistoryPurchase>
+    private lateinit var historyRecordList: List<AmountOfOrders>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemHistoryBinding =
@@ -26,7 +27,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
         holder.bind(historyRecordList[position])
     }
 
-    fun update(historyList: List<HistoryPurchase>) {
+    fun update(historyList: List<AmountOfOrders>) {
         if(! ::historyRecordList.isInitialized)
             this.historyRecordList = listOf()
         this.historyRecordList = historyList
@@ -37,7 +38,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     {
         private val viewModelHR = HistoryRecordViewModel()
 
-        fun bind(historyRecord: HistoryPurchase){
+        fun bind(historyRecord: AmountOfOrders){
 
             viewModelHR.bind(historyRecord)
             binding.viewModel = viewModelHR

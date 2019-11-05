@@ -10,9 +10,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.oracle.oracle_mobile_app.R
 import com.oracle.oracle_mobile_app.base.BaseActivity
+import com.oracle.oracle_mobile_app.network.OracleServerApi
 import javax.inject.Inject
 
-class MainActivity @Inject constructor() : BaseActivity() {
+class MainActivity
+    : BaseActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

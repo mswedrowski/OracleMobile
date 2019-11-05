@@ -12,6 +12,9 @@ import com.oracle.oracle_mobile_app.databinding.FragmentTodayBinding
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import android.graphics.Color
+import androidx.lifecycle.Observer
+import com.github.mikephil.charting.data.Entry
+import kotlinx.android.synthetic.main.fragment_today.*
 
 
 class TodayFragment : Fragment() {
@@ -19,6 +22,16 @@ class TodayFragment : Fragment() {
     private lateinit var todayViewModel: TodayViewModel
     private lateinit var binding: FragmentTodayBinding
     var chart_entries = mutableListOf<PieEntry>()
+
+    val pieColors = intArrayOf(
+        Color.rgb(192, 0, 0),
+        Color.rgb(255, 0, 0),
+        Color.rgb(255, 192, 0),
+        Color.rgb(127, 127, 127),
+        Color.rgb(146, 208, 80),
+        Color.rgb(0, 176, 80),
+        Color.rgb(79, 129, 189)
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +41,29 @@ class TodayFragment : Fragment() {
         todayViewModel = ViewModelProviders.of(this).get(TodayViewModel::class.java)
 
 
-        todayViewModel.todayDistributionList.value?.forEach{ distr ->
-            chart_entries.add(PieEntry(distr.distribution,distr.itemName))
-        }
+
         val root = inflater.inflate(R.layout.fragment_today, container, false)
+
+        todayViewModel.todayDistributionList.observe(this, Observer{newValue ->
+
+                val colorListInt = mutableListOf<Int>()
+
+                pieColors.forEach { color ->
+                    colorListInt.add(color)
+                }
+
+                newValue?.forEach{ distr ->
+                    chart_entries.add(PieEntry(distr.distribution,distr.itemName))
+                }
+
+                val dataSet = PieDataSet(chart_entries, "Orders distribution")
+                dataSet.colors = colorListInt
+                today_distribution_chart.data = PieData(dataSet)
+                today_distribution_chart.description.isEnabled = false
+                today_distribution_chart.invalidate()
+                today_distribution_chart.notifyDataSetChanged();
+                today_distribution_chart.invalidate()
+            })
 
         return root
     }
@@ -39,15 +71,7 @@ class TodayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pieColors = intArrayOf(
-            Color.rgb(192, 0, 0),
-            Color.rgb(255, 0, 0),
-            Color.rgb(255, 192, 0),
-            Color.rgb(127, 127, 127),
-            Color.rgb(146, 208, 80),
-            Color.rgb(0, 176, 80),
-            Color.rgb(79, 129, 189)
-        )
+
 
         binding = FragmentTodayBinding.bind(view).apply {
 

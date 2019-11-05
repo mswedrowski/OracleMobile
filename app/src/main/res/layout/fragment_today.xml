@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
+                            android:layout_marginStart="8dp"
+                            android:padding="3dp"
                             android:text="Items sold"
                             android:textAlignment="center"
                             android:textSize="20dp"
@@ -59,7 +61,9 @@
                             android:id="@+id/today_revenue_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
                             android:background="@color/colorButton"
+                            android:padding="3dp"
                             android:text="Revenue value"
                             android:textAlignment="center"
                             android:textSize="20dp"
@@ -129,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorButton"
                     android:text="@string/number_of_orders"
+                    android:padding="3dp"
                     android:textAlignment="center"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +192,8 @@
                         android:text="@string/compared_to_yesterday"
                         android:textAlignment="center"
                         android:textSize="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:padding="3dp"
+                        app:layout_constraintEnd_toStartOf="@+id/wrapper_rev"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -204,7 +210,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:mutableText="@{viewModel.todayToYesterday}"
+                            app:mutableText="@{viewModel.todayToYesterdayOrder}"
                             app:layout_constraintEnd_toStartOf="@+id/today_to_yesterday_img"
                             android:layout_height="wrap_content">
                         </TextView>
@@ -214,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:src="@{viewModel.todayToYesterday_bool.booleanValue() ? @drawable/ic_arrow_upward_green_24dp :  @drawable/ic_arrow_downward_red_24dp }"
+                            android:src="@{viewModel.todayToYesterdayOrder_bool.booleanValue() ? @drawable/ic_arrow_upward_green_24dp :  @drawable/ic_arrow_downward_red_24dp }"
                             app:layout_constraintStart_toEndOf="@+id/today_to_yesterday_value"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"/>

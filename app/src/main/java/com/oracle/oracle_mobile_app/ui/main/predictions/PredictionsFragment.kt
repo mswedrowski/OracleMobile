@@ -33,7 +33,7 @@ class PredictionsFragment : Fragment() {
             ViewModelProviders.of(this).get(PredictionsViewModel::class.java)
 
         predictionsViewModel.predictionsOrdersList.value?.forEach { pred_amount ->
-            chart_entries.add(Entry(pred_amount.dateTimeStamp.toFloat(),pred_amount.value)) }
+            chart_entries.add(Entry(pred_amount.date.toFloat(),pred_amount.value)) }
         val root = inflater.inflate(R.layout.fragment_predictions, container, false)
         return root
     }

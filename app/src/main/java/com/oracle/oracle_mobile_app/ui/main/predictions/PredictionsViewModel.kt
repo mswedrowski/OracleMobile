@@ -9,10 +9,10 @@ class PredictionsViewModel : ViewModel() {
 
     var predictionsOrdersList  = MutableLiveData<List<AmountOfOrders>>().apply {
         value = listOf(
-            AmountOfOrders(1514764800,311F),
-            AmountOfOrders(1514851200,303F),
-            AmountOfOrders(1514937600,315F),
-            AmountOfOrders(1515024000,315F))
+            AmountOfOrders(1,1514764800F,311F),
+            AmountOfOrders(1,1514851200F,303F),
+            AmountOfOrders(1,1514937600F,315F),
+            AmountOfOrders(1,1515024000F,315F))
     }
 
 }

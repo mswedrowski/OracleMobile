@@ -1,34 +1,90 @@
 package com.oracle.oracle_mobile_app.ui.main.history
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.oracle.oracle_mobile_app.data.model.AmountOfOrders
-import com.oracle.oracle_mobile_app.data.model.HistoryPurchase
+import com.oracle.oracle_mobile_app.data.model.HistoryRange
+import com.oracle.oracle_mobile_app.network.OracleServerApi
+import com.oracle.oracle_mobile_app.utils.BASE_URL
+import com.oracle.oracle_mobile_app.utils.CONNECTION_TIMEOUT_SEC
+import com.oracle.oracle_mobile_app.utils.extensions.toBodyOrError
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
+
 
 class HistoryViewModel : ViewModel() {
-
-    var historyRecordList = MutableLiveData<List<HistoryPurchase>>()
+    var historyRecordList = MutableLiveData<List<AmountOfOrders>>()
     var historyOrderNumList = MutableLiveData<List<AmountOfOrders>>()
+    lateinit var oracleServerApi: OracleServerApi
+    var historyRange = MutableLiveData<HistoryRange>()
 
+    var orderAmount = MutableLiveData<String>()
 
     init {
+        var moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
+        historyRange.value = HistoryRange.Full
+
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+
+        val clientko = OkHttpClient.Builder()
+            .connectTimeout(CONNECTION_TIMEOUT_SEC, TimeUnit.SECONDS)
+            .addInterceptor(httpLoggingInterceptor)
+
+        var client = clientko.build()
+
+        var retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(
+                MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .build()
+
+        oracleServerApi = retrofit.create(OracleServerApi::class.java)
+
         historyRecordList.value = listOf()
 
-        historyRecordList.postValue(listOf( HistoryPurchase("Name1","Date1","Val1"),
-                                            HistoryPurchase("Name2","Date2","Val2"),
-                                            HistoryPurchase("Name3","Date3","Val3")))
 
-        historyOrderNumList.value = (listOf(
-                                            AmountOfOrders(1451660400,223F),
-                                            AmountOfOrders(1451833400,240F),
-                                            AmountOfOrders(1451919800,250F),
-                                            AmountOfOrders(1452006200,222F),
-                                            AmountOfOrders(1452092600,270F)
-        ))
+
+        oracleServerApi.getOrdersAmount()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.toBodyOrError() }
+            .subscribe(
+                { histrList ->
+                    historyOrderNumList.postValue(histrList)
+                    var order_counter = 0.0
+                    val listToPost = mutableListOf<AmountOfOrders>()
+                    histrList.forEach {
+                    if(it.value >0) {
+                        order_counter += it.value
+                        //it. = it.itemName.replace("_"," ")
+                        listToPost.add(it)}
+                }
+                    listToPost.sortByDescending { it.value }
+                    historyRecordList.postValue(listToPost)
+                    historyOrderNumList.postValue(listToPost)
+                    orderAmount.postValue(order_counter.toString())
+                },
+                {error -> Log.v("GetHistoryPurchase",error.toString())}
+            )
     }
-    private val _num_orders = MutableLiveData<String>().apply {
-        value = "999999"
+
+    fun getAmountOfOrders(): MutableLiveData<String> {
+        return orderAmount
     }
-    val text: LiveData<String> = _num_orders
+
 }

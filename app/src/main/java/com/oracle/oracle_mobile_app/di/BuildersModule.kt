@@ -5,6 +5,7 @@ import com.oracle.oracle_mobile_app.di.main.MainViewModelModule
 
 import com.oracle.oracle_mobile_app.ui.logging.LoggingActivity
 import com.oracle.oracle_mobile_app.ui.main.MainActivity
+import com.oracle.oracle_mobile_app.ui.main.history.HistoryFragment
 
 
 import dagger.Module
@@ -18,5 +19,4 @@ abstract class BuildersModule{
 
     @ContributesAndroidInjector(modules = [MainViewModelModule::class])
     abstract fun mainActivity() : MainActivity
-
 }

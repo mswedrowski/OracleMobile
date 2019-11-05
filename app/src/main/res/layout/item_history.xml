@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,12 +28,21 @@
 
         </TextView>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_item_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintGuide_percent="0.4"
+            android:orientation="vertical" />
+
         <TextView
             android:id="@+id/history_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            app:layout_constraintStart_toEndOf="@+id/history_item_name_tv"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/history_value_tv"
             app:layout_constraintTop_toTopOf="parent"
             app:mutableText="@{viewModel.getHistoryRecordDate()}" />
@@ -44,6 +54,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/history_date_tv"
             app:layout_constraintTop_toTopOf="parent"
-            app:mutableText="@{viewModel.getHistoryRecordValue()}" />
+            app:mutableText="@{ viewModel.getHistoryRecordValue()}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

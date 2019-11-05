@@ -12,7 +12,7 @@ class PredictionsRecordViewModel : BaseViewModel() {
 
     fun bind(orders: AmountOfOrders)
     {
-        predictionsDate.value = timeStampToDate(orders.dateTimeStamp.toFloat())
+        predictionsDate.value = timeStampToDate(orders.date.toFloat())
         predictionsValue.value = orders.value.toString()
     }
 
