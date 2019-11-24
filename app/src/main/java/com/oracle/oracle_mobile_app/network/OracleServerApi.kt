@@ -4,10 +4,13 @@ import com.oracle.oracle_mobile_app.data.model.AmountOfOrders
 import com.oracle.oracle_mobile_app.data.model.HistoryPurchase
 import com.oracle.oracle_mobile_app.data.model.TodayData
 import com.oracle.oracle_mobile_app.data.model.TodayOrderDistribution
+import com.oracle.oracle_mobile_app.data.model.request.UserLoginRequest
 import com.oracle.oracle_mobile_app.data.response.UserResponse
 import io.reactivex.Single
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface OracleServerApi {
 
@@ -25,4 +28,13 @@ interface OracleServerApi {
 
     @GET("/api/today_data")
     fun getTodayData(): Single<Response<TodayData>>
+
+    @GET("/api/prediction_order")
+    fun getPredictionOrder(): Single<Response<List<AmountOfOrders>>>
+
+
+
+    @POST("api/auth/login/")
+    fun postLoginUser(@Body userlogin : UserLoginRequest)  : Single<Response<UserResponse>>
+
 }

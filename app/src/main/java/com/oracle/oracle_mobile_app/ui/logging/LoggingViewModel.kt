@@ -10,20 +10,4 @@ import javax.inject.Inject
 class LoggingViewModel @Inject constructor(
                                             var oracleServerApi: OracleServerApi
                                             ): BaseViewModel() {
-
-    fun signIn() {
-
-        disposables.add(oracleServerApi.getUsers()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError{err -> Log.v("SignInError",err.toString())}
-            .subscribe(
-                {users -> Log.v("Fetched users",users.body().toString())}
-            ))
-
-
-    }
-    init {
-        signIn()
-    }
 }

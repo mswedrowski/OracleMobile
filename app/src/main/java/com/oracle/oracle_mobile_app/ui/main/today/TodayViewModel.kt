@@ -27,6 +27,7 @@ class TodayViewModel : ViewModel() {
     var todayToYesterdayOrder = MutableLiveData<String>()
     var todayToYesterdayOrder_bool = MutableLiveData<Boolean>()
 
+    var todayCountItems = MutableLiveData<String>()
     var todayToYesterdayRev = MutableLiveData<String>()
     var todayToYesterdayRev_bool = MutableLiveData<Boolean>()
 
@@ -75,11 +76,25 @@ class TodayViewModel : ViewModel() {
                 { err ->  Log.v("OnFetchDistErr",err.toString()) })
 
 
-        todayToYesterdayOrder.value =" Number of orders:    " + 0.15F.toString() + " %"
-        todayToYesterdayOrder_bool.value = true
+        oracleServerApi.getTodayData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.toBodyOrError() }
+            .subscribe(
+                {todayData ->
+                    todayToYesterdayOrder.postValue(" Number of orders: ${todayData.comparision_yesterday} %")
 
-        todayToYesterdayRev.value = (-0.02F).toString() + " %"
-        todayToYesterdayRev_bool.value = false
+                    if((todayData.comparision_yesterday)?.toFloat()!! >0)
+                        todayToYesterdayOrder_bool.value = true
+                    else
+                        todayToYesterdayOrder_bool.value = false
+
+                    todayCountItems.postValue(todayData.order_count.toString())
+                    todayToYesterdayRev.postValue(todayData.revenue.toString())
+                },{
+                    err -> Log.v("TodayDataErr",err.toString())
+                }
+            )
     }
 
     private val _text = MutableLiveData<String>().apply {

@@ -32,8 +32,30 @@ class PredictionsFragment : Fragment() {
         predictionsViewModel =
             ViewModelProviders.of(this).get(PredictionsViewModel::class.java)
 
+
         predictionsViewModel.predictionsOrdersList.value?.forEach { pred_amount ->
             chart_entries.add(Entry(pred_amount.date.toFloat(),pred_amount.value)) }
+
+
+        predictionsViewModel.predictionsOrdersList.observe(this, Observer{newValue ->
+
+            predictionsViewModel.predictionsOrdersList.value?.sortedBy { it.date  }
+
+            predictionsViewModel.predictionsOrdersList.value?.forEach { order_amnt ->
+                chart_entries.add(Entry(order_amnt.date.toFloat(),order_amnt.value))
+            }
+
+            val dataSet = LineDataSet(chart_entries, "Number of orders")
+            predictions_order_num_chart.data = LineData(dataSet)
+            predictions_order_num_chart.description.isEnabled = false
+            predictions_order_num_chart.legend.isEnabled = false
+            predictions_order_num_chart.setPinchZoom(true)
+            predictions_order_num_chart.xAxis.enableGridDashedLine(5f, 5f, 0f)
+            predictions_order_num_chart.axisRight.enableGridDashedLine(5f, 5f, 0f)
+            predictions_order_num_chart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
+            predictions_order_num_chart.invalidate()
+        })
+
         val root = inflater.inflate(R.layout.fragment_predictions, container, false)
         return root
     }

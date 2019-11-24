@@ -27,6 +27,7 @@ import com.oracle.oracle_mobile_app.ui.logging.LoggingViewModel
 import javax.inject.Inject
 
 
+
 class HistoryFragment
     : Fragment() {
     private lateinit var historyViewModel: HistoryViewModel
@@ -60,17 +61,17 @@ class HistoryFragment
 
 
         historyViewModel.historyOrderNumList.observe(this, Observer{newValue ->
-
-            historyViewModel.historyOrderNumList.value?.sortedBy { it.date  }
-
-            historyViewModel.historyOrderNumList.value?.forEach { order_amnt ->
+            var newValuev = newValue?.sortedBy { it.date  }
+            newValuev?.forEach { order_amnt ->
                 chart_entries.add(Entry(order_amnt.date.toFloat(),order_amnt.value))
             }
+
+            chart_entries.sortedBy { it.x }
+
             val xAxisFormatter = TimestampValueFormatter()
             val dataSet = LineDataSet(chart_entries, "Number of orders")
             history_order_num_chart.data = LineData(dataSet)
             history_order_num_chart.xAxis.valueFormatter = xAxisFormatter
-            history_order_num_chart.data = LineData(dataSet)
             history_order_num_chart.description.isEnabled = false
             history_order_num_chart.legend.isEnabled = false
             history_order_num_chart.setPinchZoom(true)
@@ -79,7 +80,6 @@ class HistoryFragment
             history_order_num_chart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
             history_order_num_chart.invalidate()
             history_order_num_chart.notifyDataSetChanged();
-            history_order_num_chart.invalidate();
         })
 
         return root

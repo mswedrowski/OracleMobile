@@ -7,8 +7,6 @@ import com.squareup.moshi.JsonClass
 @Entity
 @JsonClass(generateAdapter = true)
 data class UserResponse(
-    @PrimaryKey val id:Int,
-    val email : String,
-    val password : String,
-    val created_at : String
+    var user : UserResponseDetails,
+    var token : String
 )

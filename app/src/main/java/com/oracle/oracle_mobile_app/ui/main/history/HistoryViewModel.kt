@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 class HistoryViewModel : ViewModel() {
     var historyRecordList = MutableLiveData<List<AmountOfOrders>>()
     var historyOrderNumList = MutableLiveData<List<AmountOfOrders>>()
-    lateinit var oracleServerApi: OracleServerApi
+    var oracleServerApi: OracleServerApi
     var historyRange = MutableLiveData<HistoryRange>()
 
     var orderAmount = MutableLiveData<String>()
