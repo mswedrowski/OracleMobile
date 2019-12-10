@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="32dp"
                             android:gravity="center"
-                            app:mutableText="@{viewModel.todayToYesterdayRev}"
+                            app:mutableText="@{viewModel.todayToYesterdayRevenue}"
                             android:textSize="20dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/today_num_selling"
@@ -193,7 +193,7 @@
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:padding="3dp"
-                        app:layout_constraintEnd_toStartOf="@+id/wrapper_rev"
+
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -210,7 +210,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:mutableText="@{viewModel.todayToYesterdayOrder}"
+                            app:mutableText="@{viewModel.todayToYesterdayMessage}"
                             app:layout_constraintEnd_toStartOf="@+id/today_to_yesterday_img"
                             android:layout_height="wrap_content">
                         </TextView>
@@ -220,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:src="@{viewModel.todayToYesterdayOrder_bool.booleanValue() ? @drawable/ic_arrow_upward_green_24dp :  @drawable/ic_arrow_downward_red_24dp }"
+                            android:src="@{viewModel.todayToYesterdayDirection.booleanValue() ? @drawable/ic_arrow_upward_green_24dp :  @drawable/ic_arrow_downward_red_24dp }"
                             app:layout_constraintStart_toEndOf="@+id/today_to_yesterday_value"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"/>

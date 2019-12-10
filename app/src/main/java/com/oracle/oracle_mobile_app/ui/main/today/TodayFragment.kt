@@ -88,7 +88,6 @@ class TodayFragment : Fragment() {
             todayDistributionChart.description.isEnabled = false
 
             todayDistributionChart.invalidate()
-
             viewModel = todayViewModel
 
         }

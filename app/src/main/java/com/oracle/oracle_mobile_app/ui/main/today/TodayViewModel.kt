@@ -24,12 +24,12 @@ class TodayViewModel : ViewModel() {
 
     var todayDistributionList = MutableLiveData<List<TodayOrderDistribution>>()
 
-    var todayToYesterdayOrder = MutableLiveData<String>()
-    var todayToYesterdayOrder_bool = MutableLiveData<Boolean>()
+    var todayToYesterdayMessage = MutableLiveData<String>()
+    var todayToYesterdayDirection = MutableLiveData<Boolean>()
 
     var todayCountItems = MutableLiveData<String>()
-    var todayToYesterdayRev = MutableLiveData<String>()
-    var todayToYesterdayRev_bool = MutableLiveData<Boolean>()
+    var todayToYesterdayRevenue = MutableLiveData<String>()
+
 
     lateinit var oracleServerApi: OracleServerApi
 
@@ -82,15 +82,15 @@ class TodayViewModel : ViewModel() {
             .map { it.toBodyOrError() }
             .subscribe(
                 {todayData ->
-                    todayToYesterdayOrder.postValue(" Number of orders: ${todayData.comparision_yesterday} %")
+                    todayToYesterdayMessage.postValue(" Number of orders: ${todayData.comparision_yesterday} %")
 
                     if((todayData.comparision_yesterday)?.toFloat()!! >0)
-                        todayToYesterdayOrder_bool.value = true
+                        todayToYesterdayDirection.value = true
                     else
-                        todayToYesterdayOrder_bool.value = false
+                        todayToYesterdayDirection.value = false
 
                     todayCountItems.postValue(todayData.order_count.toString())
-                    todayToYesterdayRev.postValue(todayData.revenue.toString())
+                    todayToYesterdayRevenue.postValue(todayData.revenue.toString())
                 },{
                     err -> Log.v("TodayDataErr",err.toString())
                 }

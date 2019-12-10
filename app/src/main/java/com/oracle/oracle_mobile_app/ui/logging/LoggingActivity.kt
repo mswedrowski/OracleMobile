@@ -25,6 +25,7 @@ class LoggingActivity @Inject constructor(
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private lateinit var binding: ActivityLoggingBinding
     override lateinit var viewModel: LoggingViewModel
 
@@ -35,13 +36,13 @@ class LoggingActivity @Inject constructor(
 
         login_btn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            /*
+            //startActivity(intent)
+
             if(input_password.text.isEmpty() || input_password.text.isEmpty()){
                 Toast.makeText(this,"Please, give password and email",Toast.LENGTH_LONG).show()
             }
             else {
-                viewModel.oracleServerApi.postLoginUser(UserLoginRequest(input_email.text.toString(),input_password.text.toString()))
+                viewModel.oracleServerApi.login(UserLoginRequest(input_email.text.toString(),input_password.text.toString()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError { err -> Log.v("ErrorAPIUser",err.toString()) }
@@ -51,9 +52,6 @@ class LoggingActivity @Inject constructor(
                         {err -> Log.v("ErrorAPIUser",err.toString())}
                     )
             }
-
-             */
-
         }
     }
 }

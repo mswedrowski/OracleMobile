@@ -56,7 +56,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOracleServerApi(retrofit: Retrofit): OracleServerApi {
-        return retrofit.create(OracleServerApi::class.java)
+            return retrofit.create(OracleServerApi::class.java)
     }
 
 

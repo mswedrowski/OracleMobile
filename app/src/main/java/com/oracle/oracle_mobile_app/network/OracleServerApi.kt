@@ -37,4 +37,7 @@ interface OracleServerApi {
     @POST("api/auth/login/")
     fun postLoginUser(@Body userlogin : UserLoginRequest)  : Single<Response<UserResponse>>
 
+    @POST("api/login")
+    fun login(@Body userlogin : UserLoginRequest)  : Single<Response<UserResponse>>
+
 }

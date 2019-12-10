@@ -25,6 +25,7 @@ class HistoryViewModel : ViewModel() {
     var historyRecordList = MutableLiveData<List<AmountOfOrders>>()
     var historyOrderNumList = MutableLiveData<List<AmountOfOrders>>()
     var oracleServerApi: OracleServerApi
+
     var historyRange = MutableLiveData<HistoryRange>()
 
     var orderAmount = MutableLiveData<String>()
@@ -85,6 +86,32 @@ class HistoryViewModel : ViewModel() {
 
     fun getAmountOfOrders(): MutableLiveData<String> {
         return orderAmount
+    }
+
+    fun getNewOrderRange(historyRange: HistoryRange){
+
+        oracleServerApi.getOrdersAmount()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.toBodyOrError() }
+            .subscribe(
+                { histrList ->
+                    historyOrderNumList.postValue(histrList)
+                    var order_counter = 0.0
+                    val listToPost = mutableListOf<AmountOfOrders>()
+                    histrList.forEach {
+                        if(it.value >0) {
+                            order_counter += it.value
+                            //it. = it.itemName.replace("_"," ")
+                            listToPost.add(it)}
+                    }
+                    listToPost.sortByDescending { it.value }
+                    historyRecordList.postValue(listToPost)
+                    historyOrderNumList.postValue(listToPost)
+                    orderAmount.postValue(order_counter.toString())
+                },
+                {error -> Log.v("GetHistoryPurchase",error.toString())}
+            )
     }
 
 }

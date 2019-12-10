@@ -82,6 +82,10 @@ class HistoryFragment
             history_order_num_chart.notifyDataSetChanged();
         })
 
+
+
+        historyViewModel.historyRange.observe(this, Observer {  })
+
         return root
     }
 
